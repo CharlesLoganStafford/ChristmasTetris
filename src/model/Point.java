@@ -1,7 +1,3 @@
-/*
- * TCSS 305
- */
-
 package model;
 
 import java.util.Objects;
@@ -10,9 +6,6 @@ import java.util.Objects;
  * Represents a Point with x and y coordinates.
  * Point objects are immutable.
  * (Compare to java.awt.Point which is mutable)
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public final class Point {
 
@@ -33,7 +26,6 @@ public final class Point {
         myY = theY;
     }
 
-    // Queries
     /**
      * Returns the X coordinate.
      * 
@@ -72,8 +64,6 @@ public final class Point {
     public Point transform(final Point thePoint) {
         return transform(thePoint.getX(), thePoint.getY());
     }
-
-    // overridden methods of class Object
 
     @Override
     public boolean equals(final Object theOther) {

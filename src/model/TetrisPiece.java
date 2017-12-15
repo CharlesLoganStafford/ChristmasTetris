@@ -1,16 +1,9 @@
-/*
- * TCSS 305 - Project Tetris
- */
-
 package model;
 
 import java.util.Random;
 
 /**
  * Enumeration of the TetrisPiece types.
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public enum TetrisPiece {
 
@@ -49,16 +42,11 @@ public enum TetrisPiece {
       Block.Z,
       new Point(0, 2), new Point(1, 2), new Point(1, 1), new Point(2, 1));
 
-    
-    // Other class constants
-
     /**
      * A Random Object.
      */
     private static final Random RANDOM = new Random();
 
-    
-    // instance fields
     /**
      * The width of the TetrisPiece.
      */

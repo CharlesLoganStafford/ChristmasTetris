@@ -1,7 +1,3 @@
-/*
- * TCSS 305  - Project Tetris
- */
-
 package model;
 
 import java.util.ArrayList;
@@ -11,13 +7,8 @@ import java.util.Observable;
 
 /**
  * Represents a Tetris board.
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public class Board extends Observable {
-
-    // Class constants
     
     /**
      * Default width of a Tetris game board.
@@ -28,9 +19,6 @@ public class Board extends Observable {
      * Default height of a Tetris game board.
      */
     private static final int DEFAULT_HEIGHT = 20;
-
-    
-    // Instance fields
     
     /**
      * Width of the game board. 
@@ -82,8 +70,6 @@ public class Board extends Observable {
      * down movement in the drop.
      */
     private boolean myDrop;
-    
-    // Constructors
 
     /**
      * Default Tetris board constructor.
@@ -107,21 +93,11 @@ public class Board extends Observable {
          
         myNonRandomPieces = new ArrayList<TetrisPiece>();
         mySequenceIndex = 0;
-        
-        /*  myNextPiece and myCurrentPiece
-         *  are initialized by the newGame() method.
-         *  
-         *  Be sure to call newGame() before each game including the first game.
-         */
     }
     
-    
-    /* ----------------------- Added method ----------------------------------- */
-    
     /**
-     * This is the added method setSize of the Board class. This is a
-     * basic setter method that sets the values of the myWidth and myHeight
-     * values to the input integers. Added by Logan Stafford.
+     * This is a basic setter method that sets the values of the myWidth and myHeight
+     * values to the input integers.
      * 
      * @param theWidth The new width.
      * @param theHeight The new height.
@@ -133,10 +109,6 @@ public class Board extends Observable {
         /* Setting the new Height value. */
         myHeight = theHeight;        
     }
-    
-    /* ------------------------------------------------------------------------ */
-
-    // public queries
     
     /**
      * Get the width of the board.
@@ -262,8 +234,6 @@ public class Board extends Observable {
             down();  // move down one more time to freeze in place
         }
     }
-    
-
 
     @Override
     public String toString() {
@@ -304,9 +274,6 @@ public class Board extends Observable {
         sb.append('|');
         return sb.toString();
     }
-
-    
-    // private helper methods
     
     /**
      * Helper function to check if the current piece can be shifted to the

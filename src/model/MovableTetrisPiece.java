@@ -1,16 +1,9 @@
-/*
- * TCSS 305 - Project Tetris
- */
-
 package model;
 
 /**
  * Represents a TetrisPiece with a position and a rotation.
  * 
  * A MovableTetrisPiece is immutable.
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public final class MovableTetrisPiece {
     
@@ -34,7 +27,6 @@ public final class MovableTetrisPiece {
      */
     private final Rotation myRotation;
     
-    // This constructor allows creation of pieces in the zero rotational state
     /**
      * Constructs a MovablTetrisPiece using the specified type and position;
      * the initial rotation is set to the default zero (NONE) Rotation.
@@ -48,7 +40,6 @@ public final class MovableTetrisPiece {
         this(theTetrisPiece, thePosition, Rotation.START);
     }
 
-    // This constructor allows creation of pieces in any rotation
     /**
      * Constructs a MovablTetrisPiece using the specified type, position, and initial rotation.
      * 
@@ -64,12 +55,7 @@ public final class MovableTetrisPiece {
         myPosition = thePosition;
         myRotation = theRotation;
     }
-    
-    
-    
-    
-    
-    
+  
     /**
      * Return the width of the MovableTetrisPiece.
      * 
@@ -109,9 +95,6 @@ public final class MovableTetrisPiece {
         return myTetrisPiece.getBlock();
     }
     
-    
-    // methods overridden from class Object
-    
     @Override
     public String toString() {
         
@@ -137,12 +120,7 @@ public final class MovableTetrisPiece {
         }
         return sb.toString();
     }
-    
-    
-    
-    
-    
-    // protected getters - used by the Board class
+ 
     /**
      * Get the TetrisPiece type of this movable TetrisPiece.
      * 
@@ -179,9 +157,6 @@ public final class MovableTetrisPiece {
         return getPoints(myPosition);
     }
     
-    
-    
-    // protected movement methods - used by the Board class
     /**
      * Rotates the TetrisPiece clockwise.
      * 
@@ -226,11 +201,6 @@ public final class MovableTetrisPiece {
                                       myRotation);
     }
     
-    
-
-    
-    // This protected method is used by the Board class rotation methods
-    // in order to support wall kicks during rotations
     /**
      * Returns a new MovableTetrisPiece of the current piece type and same Rotation
      * at the specified location.
@@ -241,10 +211,6 @@ public final class MovableTetrisPiece {
     protected MovableTetrisPiece setPosition(final Point thePosition) {
         return new MovableTetrisPiece(myTetrisPiece, thePosition, myRotation);
     }
-
-
-    
-    // private methods
 
     /**
      * Get the block points of the TetrisPiece transformed by x and y.

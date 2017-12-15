@@ -1,8 +1,3 @@
-/* 
- * TCSS 305 – Autumn 2016
- * Assignment 6 - Tetris 
- */
-
 package view;
 
 import java.awt.EventQueue;

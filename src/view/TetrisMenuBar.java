@@ -1,8 +1,3 @@
-/* 
- * TCSS 305 – Autumn 2016
- * Assignment 6 - Tetris 
- */
-
 package view;
 
 import java.awt.event.ActionEvent;
@@ -609,7 +604,7 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
         final JMenuItem credits = new JMenuItem("Credits...");
         credits.setMnemonic(KeyEvent.VK_C);
         
-        final String creditsList = "TCSS 305 - Tetris (Autumn 2016) by Logan Stafford\n\n"
+        final String creditsList = "Christmas Tetris (Autumn 2016) by Logan Stafford\n\n"
                         + "Credits:\nMany thanks to the Java API and Oracle Tutorials "
                         + "for various aspects of programming the GUI.\n\n"
                         + "Image Credits:\nProgram Icon: http://www.freeiconspng.com/"

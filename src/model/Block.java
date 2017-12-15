@@ -1,14 +1,7 @@
-/*
- * TCSS 305 - Project Tetris
- */
-
 package model;
 
 /**
  * The different types of blocks that can be stored in a Board's grid.
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public enum Block {
     

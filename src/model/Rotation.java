@@ -1,16 +1,9 @@
-/*
- * TCSS 305 - Project Tetris
- */
-
 package model;
 
 import java.util.Random;
 
 /**
  * Enumeration of Rotation types.
- * 
- * @author TCSS 305 Instructors
- * @version Autumn 2016
  */
 public enum Rotation {
 

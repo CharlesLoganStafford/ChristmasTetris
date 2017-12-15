@@ -1,8 +1,3 @@
-/* 
- * TCSS 305 – Autumn 2016
- * Assignment 6 - Tetris 
- */
-
 package view;
 
 import java.awt.BorderLayout;
@@ -151,7 +146,7 @@ public class TetrisGUI extends KeyAdapter implements Observer {
         myDropControl = "Space";
         
         /* Initializing the GUI's JFrame. */
-        final JFrame frame = new JFrame("TCSS 305 Tetris - Merry Christmas!");        
+        final JFrame frame = new JFrame("Tetris - Merry Christmas!");        
         frame.setIconImage(new ImageIcon(ICON_IMAGE).getImage());        
         
         /* Setting the background image onto the frame. */

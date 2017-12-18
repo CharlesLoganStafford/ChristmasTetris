@@ -3,16 +3,21 @@ package model;
 import java.util.Objects;
 
 /**
- * Represents a Point with x and y coordinates.
- * Point objects are immutable.
- * (Compare to java.awt.Point which is mutable)
+ * A modified version of the common "Point" class in Java - a point with X and Y 
+ * coordinates - which is designed to be a mutable class rather than "java.awt.Point",
+ * which is mutable.
+ * 
+ * @author Logan Stafford
+ * @version 2.0
  */
 public final class Point {
 
     /** The X coordinate. */
+    
     private final int myX;
 
     /** The Y coordinate. */
+    
     private final int myY;
 
     /**

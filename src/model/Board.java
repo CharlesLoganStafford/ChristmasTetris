@@ -6,150 +6,160 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Represents a Tetris board.
+ * The Board class. This class represents a Tetris board with all
+ * corresponding properties and actions.
+ * 
+ * @author Logan Stafford
+ * @version 2.0
  */
 public class Board extends Observable {
     
     /**
-     * Default width of a Tetris game board.
+     * An integer representing the default width of a board.
      */
-    private static final int DEFAULT_WIDTH = 10;
+    private static final int DEFAULT_BOARD_WIDTH = 10;
 
     /**
-     * Default height of a Tetris game board.
+     * An integer representing the default height of a board.
      */
-    private static final int DEFAULT_HEIGHT = 20;
+    private static final int DEFAULT_BOARD_HEIGHT = 20;
     
     /**
-     * Width of the game board. 
-     * 
-     * Removed the final modifier. - Logan Stafford
+     * An integer representing the current width of a board.
      */
-    private int myWidth;
+    private int myCurrentBoardWidth;
 
     /**
-     * Height of the game board.
-     * 
-     * Removed the final modifier. - Logan Stafford
+     * An integer representing the current height of a board.
      */
-    private int myHeight;
+    private int myCurrentBoardHeight;
     
     /**
-     * The frozen blocks on the board.
+     * A List containing all the frozen blocks on a board.
      */
     private final List<Block[]> myFrozenBlocks;
     
     /**
-     * The game over state.
+     * A boolean value of the current game status (Think: Is the game over?)
      */
     private boolean myGameOver;
 
     /**
-     * Contains a non random sequence of TetrisPieces to loop through.
+     * A List containing a non-random sequence of TetrisPieces to loop through.
      */
     private List<TetrisPiece> myNonRandomPieces;
 
     /**
-     * The current index in the non random piece sequence.
+     * An integer representing current index in the non-random piece list "myNonRandomPieces".
      */
     private int mySequenceIndex;
     
     /**
-     * Piece that is next to play.
+     * A TetrisPiece object that is next to be dropped.
      */
     private TetrisPiece myNextPiece;
     
     /**
-     * Piece that is currently movable.
+     * A MoveableTetrisPiece object that is currently movable (the current piece).
      */
     private MovableTetrisPiece myCurrentPiece;
 
     /**
-     * A flag to indicate when moving a piece down is part of a drop operation.
-     * This is used to prevent the Board from notifying observers for each incremental
+     * A boolean value to indicate when moving a piece down is part of a drop operation -
+     * used to prevent the Board from notifying observers for each incremental
      * down movement in the drop.
      */
-    private boolean myDrop;
+    private boolean myDropStatus;
 
     /**
-     * Default Tetris board constructor.
-     * Creates a standard size tetris game board.
+     * The Board constructor, used for default-sized boards.
      */
     public Board() {
-        this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        this(DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT);
     }
 
     /**
-     * Tetris board constructor for non-default sized boards.
+     * The Board constructor, used for non-default sized boards.
      * 
-     * @param theWidth Width of the Tetris game board.
-     * @param theHeight Height of the Tetris game board.
+     * @param theWidth The desired width of the new board.
+     * @param theHeight The desired height of the new board.
      */
     public Board(final int theWidth, final int theHeight) {
         super();
-        myWidth = theWidth;
-        myHeight = theHeight;
-        myFrozenBlocks = new LinkedList<Block[]>();
-         
+        
+        /* Setting the board height/width to the input values. */
+        myCurrentBoardWidth = theWidth;
+        myCurrentBoardHeight = theHeight;
+        
+        /* Creating */
+        myFrozenBlocks = new LinkedList<Block[]>();        
         myNonRandomPieces = new ArrayList<TetrisPiece>();
+        
+        /* Setting the index of the non-random pieces list to 0 (the first element/piece). */
         mySequenceIndex = 0;
     }
     
     /**
-     * This is a basic setter method that sets the values of the myWidth and myHeight
-     * values to the input integers.
+     * The setSize method, which sets the values of the myBoardWidth and myBoardHeight
+     * to the input integers.
      * 
-     * @param theWidth The new width.
-     * @param theHeight The new height.
+     * @param theWidth The new board width.
+     * @param theHeight The new board height.
      */
     public void setSize(final int theWidth, final int theHeight) {
         /* Setting the new Width value.*/
-        myWidth = theWidth;
+        myCurrentBoardWidth = theWidth;
         
         /* Setting the new Height value. */
-        myHeight = theHeight;        
+        myCurrentBoardHeight = theHeight;        
     }
     
     /**
-     * Get the width of the board.
+     * The getWidth method, which simply returns the current width of the board.
      * 
-     * @return Width of the board.
+     * @return The current width of the board.
      */
     public int getWidth() {
-        return myWidth;
+        return myCurrentBoardWidth;
     }
 
     /**
-     * Get the height of the board.
+     * The getHeight method, which simply returns the current Height of the board.
      * 
-     * @return Height of the board.
+     * @return The current Height of the board.
      */
     public int getHeight() {
-        return myHeight;
+        return myCurrentBoardHeight;
     }
-    
-
 
     /**
-     * Resets the board for a new game.
-     * This method must be called before the first game and before each new game.
+     * The newGame method. This resets the board for a new game. 
+     * This method must be called before every new game.
      */
     public void newGame() {
         
+        /* Resets the index of the non-random piece list back to the beginning of the list. */
         mySequenceIndex = 0;
+        
+       /* Resets the list of currently frozen blocks and re-populates the list.*/
         myFrozenBlocks.clear();
-        for (int h = 0; h < myHeight; h++) {
-            myFrozenBlocks.add(new Block[myWidth]);
+        for (int h = 0; h < myCurrentBoardHeight; h++) {
+            myFrozenBlocks.add(new Block[myCurrentBoardWidth]);
         }
 
+        /* Resetting the "status" of the game. */
         myGameOver = false;
         myCurrentPiece = nextMovablePiece(true);
-        myDrop = false;
+        myDropStatus = false;
         
+        /* Notifying all observer classes that the object data has changed. */
         setChanged();
         notifyObservers(toString());
     }
 
+    //---------------------------------------------------------------------------------------------------------------------/
+    
+    
     /**
      * Sets a non random sequence of pieces to loop through.
      * 
@@ -226,11 +236,11 @@ public class Board extends Observable {
      */
     public void drop() {
         if (!myGameOver) {
-            myDrop = true;
+            myDropStatus = true;
             while (isPieceLegal(myCurrentPiece.down())) {
                 down();  // move down as far as possible
             }
-            myDrop = false;
+            myDropStatus = false;
             down();  // move down one more time to freeze in place
         }
     }
@@ -238,10 +248,10 @@ public class Board extends Observable {
     @Override
     public String toString() {
         final List<Block[]> board = getBoard();
-        board.add(new Block[myWidth]);
-        board.add(new Block[myWidth]);
-        board.add(new Block[myWidth]);
-        board.add(new Block[myWidth]);
+        board.add(new Block[myCurrentBoardWidth]);
+        board.add(new Block[myCurrentBoardWidth]);
+        board.add(new Block[myCurrentBoardWidth]);
+        board.add(new Block[myCurrentBoardWidth]);
         if (myCurrentPiece != null) {
             addPieceToBoardData(board, myCurrentPiece);
         }
@@ -259,16 +269,16 @@ public class Board extends Observable {
                 }
             }
             sb.append("|\n");
-            if (i == this.myHeight) {
+            if (i == this.myCurrentBoardHeight) {
                 sb.append(' ');
-                for (int j = 0; j < this.myWidth; j++) {
+                for (int j = 0; j < this.myCurrentBoardWidth; j++) {
                     sb.append('-');
                 }
                 sb.append('\n');
             }
         }
         sb.append('|');
-        for (int w = 0; w < myWidth; w++) {
+        for (int w = 0; w < myCurrentBoardWidth; w++) {
             sb.append('-');
         }
         sb.append('|');
@@ -288,7 +298,7 @@ public class Board extends Observable {
         if (isPieceLegal(theMovedPiece)) {
             myCurrentPiece = theMovedPiece;
             result = true;
-            if (!myDrop) {
+            if (!myDropStatus) {
                 setChanged();
             }
             notifyObservers(toString());
@@ -310,7 +320,7 @@ public class Board extends Observable {
         boolean result = true;
         
         for (final Point p : thePiece.getBoardPoints()) {
-            if (p.getX() < 0 || p.getX() >= myWidth) {
+            if (p.getX() < 0 || p.getX() >= myCurrentBoardWidth) {
                 result = false;
             }
             if (p.getY() < 0) {
@@ -359,7 +369,7 @@ public class Board extends Observable {
             for (int i = completeRows.size() - 1; i >= 0; i--) {
                 final Block[] row = myFrozenBlocks.get(completeRows.get(i));
                 myFrozenBlocks.remove(row);
-                myFrozenBlocks.add(new Block[myWidth]);
+                myFrozenBlocks.add(new Block[myCurrentBoardWidth]);
             }
         }
         notifyObservers(completeRows.toArray(new Integer[completeRows.size()]));
@@ -386,7 +396,7 @@ public class Board extends Observable {
      * @return True if the point is on the board otherwise false.
      */
     private boolean isPointOnBoard(final List<Block[]> theBoard, final Point thePoint) {
-        return thePoint.getX() >= 0 && thePoint.getX() < myWidth && thePoint.getY() >= 0
+        return thePoint.getX() >= 0 && thePoint.getX() < myCurrentBoardWidth && thePoint.getY() >= 0
                && thePoint.getY() < theBoard.size();
     }
 
@@ -457,7 +467,7 @@ public class Board extends Observable {
         
         final TetrisPiece next = myNextPiece;
         
-        int startY = myHeight - 1;
+        int startY = myCurrentBoardHeight - 1;
         if (myNextPiece == TetrisPiece.I) {
             startY--; 
         }
@@ -466,7 +476,7 @@ public class Board extends Observable {
         
         final MovableTetrisPiece nextMovablePiece =
             new MovableTetrisPiece(next,
-                                   new Point((myWidth - myNextPiece.getWidth()) / 2, startY));
+                                   new Point((myCurrentBoardWidth - myNextPiece.getWidth()) / 2, startY));
                         
         
         
@@ -474,7 +484,7 @@ public class Board extends Observable {
         if (!myGameOver) {
             setChanged();
             notifyObservers(new MovableTetrisPiece(myNextPiece,
-                            new Point((myWidth - myNextPiece.getWidth()) / 2, startY)));
+                            new Point((myCurrentBoardWidth - myNextPiece.getWidth()) / 2, startY)));
         }
         
         return nextMovablePiece;

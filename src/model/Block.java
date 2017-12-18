@@ -1,25 +1,46 @@
 package model;
 
 /**
- * The different types of blocks that can be stored in a Board's grid.
+ * The Block class, which enumerates the different types of blocks 
+ * that can be stored in a Board's grid.
+ * 
+ * DONE
+ * 
+ * @author Logan Stafford
+ * @version 2.0
  */
 public enum Block {
     
-    /** AN empty space in the grid. */
+    /** An empty space in the grid. */
+    
     EMPTY,
-    /** A Block from an IPiece. */
+    
+    /** An "I" piece in the grid. */
+    
     I,
-    /** A Block from a JPiece. */
+    
+    /** An "J" piece in the grid. */
+    
     J,
-    /** A Block from an LPiece. */
+    
+    /** An "L" piece in the grid. */
+    
     L,
-    /** A Block from an OPiece. */
+    
+    /** An "O" piece in the grid. */
+    
     O,
-    /** A Block from an SPiece. */
+    
+    /** An "S" piece in the grid. */
+    
     S,
-    /** A Block from a TPiece. */
+    
+    /** An "T" piece in the grid. */
+    
     T,
-    /** A Block from a ZPiece. */
+    
+    /** An "Z" piece in the grid. */
+    
     Z;
     
 }

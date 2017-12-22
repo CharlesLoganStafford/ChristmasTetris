@@ -3,7 +3,13 @@ package model;
 import java.util.Random;
 
 /**
- * Enumeration of Rotation types.
+ * The Rotation class, which enumerates any possible rotation that
+ * a given Tetris piece can perform.
+ * 
+ * DONE
+ * 
+ * @author Logan Stafford
+ * @version 1.2
  */
 public enum Rotation {
 
@@ -13,17 +19,17 @@ public enum Rotation {
     START,
 
     /**
-     * Quarter rotation or 90 degrees.
+     * A quarter rotation (90 degrees).
      */
     QUARTER,
 
     /**
-     * Half rotation or 180 degrees.
+     * A half rotation (180 degrees).
      */
     HALF,
 
     /**
-     * Three quarters rotation or 270 degrees.
+     * A three-quarters rotation (270 degrees).
      */
     THREEQUARTER;
 
@@ -33,9 +39,10 @@ public enum Rotation {
     private static final Random RANDOM = new Random();
 
     /**
-     * Create a new Rotation from this one rotated clockwise.
+     * Create a new Rotation that is rotated 90 degrees clockwise
+     * as compared to the current one.
      * 
-     * @return new Rotation object that is rotated 90 degrees clockwise.
+     * @return A new Rotation that is rotated 90 degrees clockwise.
      */
     public Rotation clockwise() {
         return values()[(this.ordinal() + 1) % values().length];
@@ -44,7 +51,7 @@ public enum Rotation {
     /**
      * Creates a new Rotation with a random angle.
      * 
-     * @return new random Rotation.
+     * @return A new Rotation object with a random angle.
      */
     public static Rotation random() {
         return values()[RANDOM.nextInt(values().length)];

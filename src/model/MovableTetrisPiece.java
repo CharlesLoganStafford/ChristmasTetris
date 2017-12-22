@@ -1,19 +1,25 @@
 package model;
 
 /**
- * Represents a TetrisPiece with a position and a rotation.
+ * The MoveableTetrisPiece class. This is an important component of the 
+ * back-end logic that associates a TetrisPiece object with two important
+ * aspects: a position and a rotation. This allows a TetrisPiece to move 
+ * and rotate along the Board, and essentially ties together several classes
+ * into a major functional component of the program. A MovableTetrisPiece is 
+ * immutable.
  * 
- * A MovableTetrisPiece is immutable.
+ * @author Logan Stafford
+ * @version 1.2
  */
 public final class MovableTetrisPiece {
     
     /**
-     * The number of Points in a TetrisPiece.
+     * The number of Points/Blocks in a TetrisPiece.
      */
     private static final int BLOCKS = 4;
     
     /**
-     * The TetrisPiece.
+     * The corresponding TetrisPiece.
      */
     private final TetrisPiece myTetrisPiece;
     
@@ -261,6 +267,5 @@ public final class MovableTetrisPiece {
     private Point[] getLocalPoints() {
         return getPoints(null);
     }
-
 
 }

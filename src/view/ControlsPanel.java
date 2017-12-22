@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
  * The ControlsPanel class for the Tetris program.
  * 
  * @author Logan Stafford
- * @version 12/9/2016
+ * @version 1.2
  */
 public class ControlsPanel extends JPanel {
     
@@ -51,6 +51,7 @@ public class ControlsPanel extends JPanel {
      * The printControls method of the ControlsPanel class.
      */
     private void printControls() {
+        
         /* Creating a Box object to use as a space for the drawing. */
         final Box controlsPanel = Box.createVerticalBox();
         
@@ -63,12 +64,12 @@ public class ControlsPanel extends JPanel {
         setBorder(border);
         
         /* Creating some labels to represent each control. */
-        final JLabel leftLabel = new JLabel("Move Left:                  A ");
-        final JLabel rightLabel = new JLabel("Move Right:                D ");
-        final JLabel rotateLabel = new JLabel("Rotate:                      W ");
-        final JLabel downLabel = new JLabel("Down:                        S ");
-        final JLabel dropLabel = new JLabel(" Drop:                 SPACE");
-        final JLabel pauseLabel = new JLabel(" Pause:               CTRL+P ");
+        final JLabel leftLabel = new JLabel("Move Left:                A ");
+        final JLabel rightLabel = new JLabel("Move Right:              D ");
+        final JLabel rotateLabel = new JLabel("Rotate:                    W ");
+        final JLabel downLabel = new JLabel("Down:                      S ");
+        final JLabel dropLabel = new JLabel(" Drop:               SPACE");
+        final JLabel pauseLabel = new JLabel(" Pause:             CTRL+P ");
         
         /* Set the text color of these labels to white. */
         leftLabel.setForeground(Color.WHITE);

@@ -35,7 +35,7 @@ import model.Board;
  * The TetrisMenuBar class for the Tetris program.
  * 
  * @author Logan Stafford
- * @version 12/9/2016
+ * @version 1.2
  */
 public class TetrisMenuBar extends JMenuBar implements Observer {
     
@@ -381,8 +381,12 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
         return optionsMenu;
     }
     
+    //---------------------------------------------------------------------------------------------------------------------/
+    
     /**
-     * The createSoundToggleMenuItem method of the TetrisMenuBar class.
+     * The createSoundToggleMenuItem method of the TetrisMenuBar class. This
+     * method creates and returns a JCheckBoxMenuItem that toggles the game's
+     * music on/off.
      * 
      * @return The toggle sound check box of the Options menu.
      */
@@ -410,7 +414,9 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The createGridToggleMenuItem method of the TetrisMenuBar class.
+     * The createGridToggleMenuItem method of the TetrisMenuBar class. This
+     * method creates and returns a JCheckBoxMenuItem that is used to toggle
+     * the game grid overlay's visibilty.
      * 
      * @return The toggle game grid check box of the Options menu.
      */
@@ -436,7 +442,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The createChangeGridSizeMenuItem method of the TetrisMenuBar class.
+     * The createChangeGridSizeMenuItem method of the TetrisMenuBar class. This method
+     * creates and returns a JMenu object used to adjust the game grid's size.
      * 
      * @return The grid size changing dialog of the Options menu.
      */
@@ -476,7 +483,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * A helper method for the actionListener in the GridSize selector.
+     * The setGridSize method. This method is a helper method for
+     * the actionListener in the GridSize selector.
      * 
      * @param theSize A String to set the size against.
      */
@@ -504,7 +512,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
 
     /**
-     * The createDifficultySubMenu method of the TetrisMenuBar class. 
+     * The createDifficultySubMenu method of the TetrisMenuBar class. This method
+     * creates and returns the difficulty selection sub-menu used in the game.
      * 
      * @return The difficulty selection sub-menu of the Options menu.
      */
@@ -547,7 +556,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
 
     /**
-     * The aboutMenu method of the TetrisMenuBar class.
+     * The aboutMenu method of the TetrisMenuBar class. This method creates 
+     * and returns an "About" JMenu object used in the game.
      * 
      * @return The "About" JMenu used in the menu bar of the program.
      */
@@ -564,7 +574,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The createScoringMenu method of the TetrisMenuBar class.
+     * The createScoringMenu method of the TetrisMenuBar class. This brings up a dialog
+     * box that explains how the scoring of the game works.
      * 
      * @return The "Scoring" menu item of the About menu.
      */
@@ -595,7 +606,9 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The createCreditsMenu method of the TetrisMenuBar class.
+     * The createCreditsMenu method of the TetrisMenuBar class. This brings up a
+     * dialog box that displays where I got some of the game media, such as pictures
+     * and music.
      * 
      * @return The "Credits" menu item of the About menu.
      */
@@ -604,7 +617,7 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
         final JMenuItem credits = new JMenuItem("Credits...");
         credits.setMnemonic(KeyEvent.VK_C);
         
-        final String creditsList = "Christmas Tetris (Autumn 2016) by Logan Stafford\n\n"
+        final String creditsList = "Christmas Tetris (made in December 2016) by Logan Stafford\n\n"
                         + "Credits:\nMany thanks to the Java API and Oracle Tutorials "
                         + "for various aspects of programming the GUI.\n\n"
                         + "Image Credits:\nProgram Icon: http://www.freeiconspng.com/"
@@ -636,7 +649,7 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The drawPause method of the TetrisMenuBar class.
+     * The drawPause method of the TetrisMenuBar class. This method pauses the current game.
      */
     private void drawPause() {
         /* Play the "Pause" sound effect. */
@@ -652,7 +665,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The setDifficulty method of the TetrisMenuBar class.
+     * The setDifficulty method of the TetrisMenuBar class. This method adjusts 
+     * the game's difficulty based on the speed of the timer
      * 
      * @param theDiff The requested difficulty as a String.
      */
@@ -674,7 +688,8 @@ public class TetrisMenuBar extends JMenuBar implements Observer {
     }
     
     /**
-     * The enableMusic method of the TetrisMenuBar class.
+     * The enableMusic method of the TetrisMenuBar class. This method enables and
+     * disables the music of the game based on an input boolean variable.
      * 
      * @param theOption The boolean variable that disables/enables the music.
      */

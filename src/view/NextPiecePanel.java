@@ -20,7 +20,7 @@ import model.MovableTetrisPiece;
  * The NextPiecePanel class for the Tetris program.
  * 
  * @author Logan Stafford
- * @version 12/9/2016
+ * @version 1.2
  */
 public class NextPiecePanel extends JPanel implements Observer {
     

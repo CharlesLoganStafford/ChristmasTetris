@@ -21,7 +21,7 @@ import model.Board;
  * The ScorePanel class for the Tetris program.
  * 
  * @author Logan Stafford
- * @version 12/9/2016
+ * @version 1.2
  */
 public class ScorePanel extends JPanel implements Observer {
     

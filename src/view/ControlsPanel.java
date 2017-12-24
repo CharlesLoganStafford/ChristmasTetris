@@ -34,7 +34,7 @@ public class ControlsPanel extends JPanel {
     private static final Color SCORE_PANEL_BG_COLOR = new Color(60, 141, 13);
         
     /**
-     * The controlsPanel constructor.     * 
+     * The controlsPanel constructor.
      */
     public ControlsPanel() {
         super();

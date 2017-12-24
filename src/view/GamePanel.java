@@ -16,7 +16,7 @@ import model.Board;
  * The GamePanel class for the Tetris program.
  * 
  * @author Logan Stafford
- * @version 12/9/2016
+ * @version 1.2
  */
 public class GamePanel extends JPanel implements Observer {
 

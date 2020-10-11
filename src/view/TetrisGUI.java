@@ -56,7 +56,7 @@ public class TetrisGUI extends KeyAdapter implements Observer {
     private static final String BACKGROUND_IMG = "./media/background.jpg";
     
     /**
-     * The background Color used for the game panel.
+     * The background color used for the game panel.
      */
     private static final Color BACKGROUND_COLOR =  new Color(144, 23, 23);
     

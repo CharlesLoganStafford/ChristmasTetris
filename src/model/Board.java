@@ -10,8 +10,10 @@ import java.util.Observable;
  * corresponding properties and actions.
  * 
  * @author Logan Stafford
- * @version 1.2
+ * @version 1.5
+ * @date October 11th, 2020
  */
+@SuppressWarnings("deprecation")
 public class Board extends Observable {
     
     /**
@@ -87,11 +89,9 @@ public class Board extends Observable {
     public Board(final int theWidth, final int theHeight) {
         super();
         
-        /* Setting the board height/width to the input values. */
         myCurrentBoardWidth = theWidth;
         myCurrentBoardHeight = theHeight;
         
-        /* Creating */
         myFrozenBlocks = new LinkedList<Block[]>();        
         myNonRandomPieces = new ArrayList<TetrisPiece>();
         
@@ -107,10 +107,7 @@ public class Board extends Observable {
      * @param theHeight The new board height.
      */
     public void setSize(final int theWidth, final int theHeight) {
-        /* Setting the new Width value.*/
         myCurrentBoardWidth = theWidth;
-        
-        /* Setting the new Height value. */
         myCurrentBoardHeight = theHeight;        
     }
     
@@ -157,9 +154,6 @@ public class Board extends Observable {
         notifyObservers(toString());
     }
 
-    //---------------------------------------------------------------------------------------------------------------------/
-    
-    
     /**
      * Sets a non random sequence of pieces to loop through.
      * 
@@ -190,7 +184,7 @@ public class Board extends Observable {
     }
 
     /**
-     * Try to move the movable piece left.
+     * Move the current piece left.
      */
     public void left() {
         if (myCurrentPiece != null) {
@@ -199,7 +193,7 @@ public class Board extends Observable {
     }
 
     /**
-     * Try to move the movable piece right.
+     * Move the current piece right.
      */
     public void right() {
         if (myCurrentPiece != null) {
@@ -216,7 +210,6 @@ public class Board extends Observable {
                 move(myCurrentPiece.rotate());
             } else {
                 final MovableTetrisPiece cwPiece = myCurrentPiece.rotate();
-                
                 final Point[] offsets = WallKick.getkicks(cwPiece.getTetrisPiece(),
                                                     myCurrentPiece.getRotation(),
                                                     cwPiece.getRotation());
@@ -252,15 +245,16 @@ public class Board extends Observable {
         board.add(new Block[myCurrentBoardWidth]);
         board.add(new Block[myCurrentBoardWidth]);
         board.add(new Block[myCurrentBoardWidth]);
+        
         if (myCurrentPiece != null) {
             addPieceToBoardData(board, myCurrentPiece);
         }
-        
         
         final StringBuilder sb = new StringBuilder();
         for (int i = board.size() - 1; i >= 0; i--) {
             final Block[] row = board.get(i);
             sb.append('|');
+            
             for (final Block c : row) {
                 if (c == null) {
                     sb.append(' ');
@@ -268,7 +262,9 @@ public class Board extends Observable {
                     sb.append(c);
                 }
             }
+            
             sb.append("|\n");
+            
             if (i == this.myCurrentBoardHeight) {
                 sb.append(' ');
                 for (int j = 0; j < this.myCurrentBoardWidth; j++) {
@@ -327,7 +323,7 @@ public class Board extends Observable {
                 result = false;
             }
         }
-        return result && !collision(thePiece);      
+        return result && !hasCollided(thePiece);      
     }
 
     /**
@@ -364,7 +360,7 @@ public class Board extends Observable {
                 setChanged();
             }
         }
-        // loop through list backwards removing items by index
+        // Loop through list backwards removing items by index
         if (!completeRows.isEmpty()) {
             for (int i = completeRows.size() - 1; i >= 0; i--) {
                 final Block[] row = myFrozenBlocks.get(completeRows.get(i));
@@ -407,10 +403,8 @@ public class Board extends Observable {
      * @param thePoint Board point.
      * @param theBlock Block to set at board point.
      */
-    private void setPoint(final List<Block[]> theBoard,
-                          final Point thePoint,
-                          final Block theBlock) {
-        
+    private void setPoint(final List<Block[]> theBoard, final Point thePoint,
+                          final Block theBlock) {        
         if (isPointOnBoard(theBoard, thePoint)) { 
             final Block[] row = theBoard.get(thePoint.getY());
             row[thePoint.getX()] = theBlock;
@@ -443,14 +437,14 @@ public class Board extends Observable {
      * @return Returns true if any of the blocks has collided with a set board
      *         block.
      */
-    private boolean collision(final MovableTetrisPiece theTest) {
-        boolean res = false;
+    private boolean hasCollided(final MovableTetrisPiece theTest) {
+        boolean hasPieceCollided = false;
         for (final Point p : theTest.getBoardPoints()) {
             if (getPoint(p) != null) {
-                res = true;
+        	hasPieceCollided = true;
             }
         }
-        return res;
+        return hasPieceCollided;
     }
 
     /**
@@ -460,7 +454,6 @@ public class Board extends Observable {
      * @return A new MovableTetrisPiece.
      */
     private MovableTetrisPiece nextMovablePiece(final boolean theRestart) {
-        
         if (myNextPiece == null || theRestart) {
             prepareNextMovablePiece();
         }
@@ -477,9 +470,6 @@ public class Board extends Observable {
         final MovableTetrisPiece nextMovablePiece =
             new MovableTetrisPiece(next,
                                    new Point((myCurrentBoardWidth - myNextPiece.getWidth()) / 2, startY));
-                        
-        
-        
         
         if (!myGameOver) {
             setChanged();
@@ -494,13 +484,11 @@ public class Board extends Observable {
      * Prepares the Next movable piece.
      */
     private void prepareNextMovablePiece() {
-        
         if (myNonRandomPieces == null || myNonRandomPieces.isEmpty()) {
             myNextPiece = TetrisPiece.getRandomPiece();
         } else {
             mySequenceIndex %= myNonRandomPieces.size();
             myNextPiece = myNonRandomPieces.get(mySequenceIndex++);
         }
-    }
-    
+    }   
 }

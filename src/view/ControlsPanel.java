@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -61,15 +62,16 @@ public class ControlsPanel extends JPanel {
                                                      TitledBorder.CENTER,
                                                      TitledBorder.BELOW_TOP);
         border.setTitleColor(Color.WHITE);
+        border.setTitleFont(new Font("Verdana", Font.PLAIN, 10));
         setBorder(border);
         
         /* Creating some labels to represent each control. */
-        final JLabel leftLabel = new JLabel("Move Left:                A ");
-        final JLabel rightLabel = new JLabel("Move Right:              D ");
-        final JLabel rotateLabel = new JLabel("Rotate:                    W ");
-        final JLabel downLabel = new JLabel("Down:                      S ");
-        final JLabel dropLabel = new JLabel(" Drop:               SPACE");
-        final JLabel pauseLabel = new JLabel(" Pause:             CTRL+P ");
+        final JLabel leftLabel = new JLabel("Move Left: A ");
+        final JLabel rightLabel = new JLabel("Move Right: D ");
+        final JLabel rotateLabel = new JLabel("Rotate: W ");
+        final JLabel downLabel = new JLabel("Down: S ");
+        final JLabel dropLabel = new JLabel("Drop: SPACE");
+        final JLabel pauseLabel = new JLabel("Pause: CTRL+P ");
         
         /* Set the text color of these labels to white. */
         leftLabel.setForeground(Color.WHITE);
@@ -78,6 +80,14 @@ public class ControlsPanel extends JPanel {
         downLabel.setForeground(Color.WHITE);
         dropLabel.setForeground(Color.WHITE);
         pauseLabel.setForeground(Color.WHITE);
+        
+        /* Set the text font and size to 10pt Verdana. */
+        leftLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        rightLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        rotateLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        downLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        dropLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        pauseLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
         
         /* Centering components on the box. */
         leftLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

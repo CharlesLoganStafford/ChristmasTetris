@@ -7,40 +7,11 @@ package model;
  * DONE
  * 
  * @author Logan Stafford
- * @version 1.2
+ * @version 1.5
+ * @date October 11th, 2020
  */
 public enum Block {
     
-    /** An empty space in the grid. */
-    
-    EMPTY,
-    
-    /** An "I" piece in the grid. */
-    
-    I,
-    
-    /** An "J" piece in the grid. */
-    
-    J,
-    
-    /** An "L" piece in the grid. */
-    
-    L,
-    
-    /** An "O" piece in the grid. */
-    
-    O,
-    
-    /** An "S" piece in the grid. */
-    
-    S,
-    
-    /** An "T" piece in the grid. */
-    
-    T,
-    
-    /** An "Z" piece in the grid. */
-    
-    Z;
-    
+    /** The eight possible types of Tetris blocks that can be used. */
+    EMPTY, I, J, L, O, S, T, Z;
 }

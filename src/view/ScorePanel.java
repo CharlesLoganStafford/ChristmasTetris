@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -59,16 +60,11 @@ public class ScorePanel extends JPanel implements Observer {
      * The amount of time to decrement the timer by in ms.
      */
     private static final int TIMER_DECREMENT = 25;
-    
-    /**
-     * The font used to draw the scores.
-     */
-    private static final Font SCORE_FONT = new Font("Arial", Font.BOLD, 12);
-    
+   
     /**
      * A integer used to center the text of the score values on the panel.
      */
-    private static final int X_OFFSET = 110;
+    private static final int X_OFFSET = 75;
     
     /**
      * An integer representing the current level of the player.
@@ -174,6 +170,7 @@ public class ScorePanel extends JPanel implements Observer {
                                                TitledBorder.CENTER,
                                                TitledBorder.BELOW_TOP);
         border.setTitleColor(Color.WHITE);
+        border.setTitleFont(new Font("Verdana", Font.PLAIN, 10));
         setBorder(border);
         
         /* Creating some JLabels to display the score board. */
@@ -189,6 +186,20 @@ public class ScorePanel extends JPanel implements Observer {
         levelLabel.setForeground(Color.WHITE);
         nextLevelLabel.setForeground(Color.WHITE);
         highScoreLabel.setForeground(Color.WHITE);
+        
+        /* Set the text font and size to 10pt Verdana. */
+        linesLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        totalScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        levelLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        nextLevelLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        highScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
+        
+        /* Centering components on the box. */
+        linesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        totalScoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        levelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nextLevelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        highScoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         /* Adding the created components to the scorePanel Box object. */
         scorePanel.add(new JLabel(BLANK_SPACE));
@@ -210,7 +221,6 @@ public class ScorePanel extends JPanel implements Observer {
         super.paintComponent(theGraphics);
         
         theGraphics.setColor(Color.WHITE);
-        theGraphics.setFont(SCORE_FONT);
         
         final int linesYOffset = 55;
         final int scoreYOffset = 72;
@@ -218,12 +228,10 @@ public class ScorePanel extends JPanel implements Observer {
         final int untilNextYOffset = 103;
         final int highScoreYOffset = 119;
         
-        theGraphics.drawString(Integer.toString(myNumberOfLinesCleared), X_OFFSET, 
-                               linesYOffset);
+        theGraphics.drawString(Integer.toString(myNumberOfLinesCleared), X_OFFSET, linesYOffset);
         theGraphics.drawString(Integer.toString(myScore), X_OFFSET, scoreYOffset);
         theGraphics.drawString(Integer.toString(myLevel), X_OFFSET, levelYOffset);
-        theGraphics.drawString(Integer.toString(myLinesUntilNextLevel), X_OFFSET, 
-                               untilNextYOffset);
+        theGraphics.drawString(Integer.toString(myLinesUntilNextLevel), X_OFFSET, untilNextYOffset);
         theGraphics.drawString(Integer.toString(myHighScore), X_OFFSET, highScoreYOffset);
     }
 
@@ -277,6 +285,5 @@ public class ScorePanel extends JPanel implements Observer {
             
             repaint();
         }             
-    }
-    
+    }    
 }

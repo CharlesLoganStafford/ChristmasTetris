@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -206,7 +207,8 @@ public class NextPiecePanel extends JPanel implements Observer {
                                                      "Next Piece:",
                                                      TitledBorder.CENTER,
                                                      TitledBorder.BELOW_TOP);
-        border.setTitleColor(Color.WHITE);        
+        border.setTitleColor(Color.WHITE); 
+        border.setTitleFont(new Font("Verdana", Font.PLAIN, 10));
         setBorder(border); 
         
         /* Adding the box panel to this object. */
